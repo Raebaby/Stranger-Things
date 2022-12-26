@@ -3,6 +3,7 @@ import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { fetchPosts } from "./api/api";
 import { Home, Posts, Login, Profile, AccountForm } from "./components"; 
+import "./App.css";
 
 
 
@@ -26,18 +27,18 @@ const App = () => {
 getPosts();
   }, [])
   return (
-  <div>
-      <nav>
-          <Link to="/">Home</Link>
-          <Link to="/Posts">Posts</Link>
-          <Link to="/Login">Login</Link>
-          <Link to="/Profile">Profile</Link>
+  <div className="container">
+      <nav className="ui secondary menu">
+          <Link className="item" to="/">Home</Link>
+          <Link className="item" to="/Posts">Posts</Link>
+          <Link className="item" to="/Login">Login</Link>
+          <Link className="item" to="/Profile">Profile</Link>
       </nav>
       <Switch>
         <Route exact path="/">
           <Home />
         </Route>
-        <Route exact path="/posts">
+        <Route className='item' exact path="/posts">
           <Posts />
         </Route>
         <Route exact path="/login">
