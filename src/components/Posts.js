@@ -1,10 +1,9 @@
 import React from "react";
-import {default as PostItem} from "./PostItem"
+//import {default as PostItem} from "./PostItem"
 
-const Posts = ({post}) => {
-    console.log("post", post);
-    return<div>List of Posts</div>; 
-     
+const Posts = ({ posts }) => {
+    console.log(posts);
+    return<div>List of Posts</div>;   
 };
 
 export default Posts;

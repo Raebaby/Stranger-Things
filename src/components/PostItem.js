@@ -1,7 +1,9 @@
 import React from "react";
 
-const PostItem = ({post}) => {
-    return <div>Post Items</div>
+const PostItem = () => {
+    return <div>
+        Vacations
+    </div>;
 }
 
 

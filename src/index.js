@@ -1,7 +1,7 @@
 import React, { useEffect, useState }  from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
-import { fetchPosts } from "./api/api";
+import { fetchPost } from "./api/api";
 import { Home, Posts, Login, Profile, AccountForm } from "./components"; 
 import "./App.css";
 
@@ -17,7 +17,7 @@ const App = () => {
   useEffect(() => {
     const getPosts = async () => {
     try {
-      const result = await fetchPosts();
+      const result = await fetchPost();
       setPost(result);
   } catch(error) {
         console.error(error)
