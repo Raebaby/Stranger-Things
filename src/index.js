@@ -2,7 +2,7 @@ import React, { useEffect, useState }  from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Switch, Link } from "react-router-dom";
 import { fetchPost } from "./api/api";
-import { Home, Posts, Login, Profile, AccountForm } from "./components"; 
+import { Home, Posts, LogOut, Profile, AccountForm } from "./components"; 
 import "./App.css";
 
 
@@ -122,22 +122,24 @@ return (
     <nav className="ui secondary menu">
         <Link className="item" to="/">Home</Link>
         <Link className="item" to="/Posts">Posts</Link>
-        <Link className="item" to="/Login">Login</Link>
+        <Link className="item" to="/LogOut">Log Out</Link>
         <Link className="item" to="/Profile">Profile</Link>
     </nav>
     <Switch>
-      <Route exact path="/">
+      <Route className="item" exact path="/">
         <Home />
-        <AccountForm />
       </Route>
       <Route className='item' exact path="/posts">
         <Posts posts={posts}/>
       </Route>
-      <Route exact path="/login">
-        <Login />
+      <Route className="item" exact path="/logout">
+        <LogOut />
       </Route>
-      <Route exact path="/profile">
+      <Route className="item" exact path="/profile">
         <Profile />
+      </Route>
+      <Route className="item" exact path="/">
+        <AccountForm />
       </Route>
     </Switch>
 </div>

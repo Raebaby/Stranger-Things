@@ -1,11 +1,18 @@
-import React from "react";
+import React, { useState } from "react";
 
-const Account = () => {
+
+const AccountForm = () => {
+    const [username, setUsername] = useState("");
+    const [password, setPassword] = useState("")
     return (
-        <div>
-            Account Login Form
-        </div>
+        <form className="ui form">
+            <h1>Form Title</h1>
+            <div className="feild"> Account Login Form
+                <label>Username</label>
+                <input type="text" value={username} placeholder="username" required/>
+            </div> 
+        </form>
     )
 }
 
-export default Account;
+export default AccountForm;
