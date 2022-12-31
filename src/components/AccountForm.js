@@ -15,7 +15,7 @@ const AccountForm = ({ setToken }) => {
 
 
 
-    const onSubmitHandler = async(event) => {
+const onSubmitHandler = async(event) => {
         event.preventDefault();
         try{
             const { data } = await registerUser(username, password)

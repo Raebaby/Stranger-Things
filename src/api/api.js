@@ -1,6 +1,7 @@
 const BASEURL = "https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT";
 
 
+
 export const fetchPost = async (token) => {
     try {
         const response = await fetch(`https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/posts`, {
@@ -34,14 +35,16 @@ export const registerUser = async (username, password) => {
           },
         }),
       });
-      ///console.log("This is the response:",response);
+      console.log("This is the response:",response);
       const data = await response.json();
-      //console.log('<----DATA---->', data)
+      console.log('<----DATA---->', data)
       return data;
 } catch(error) {
     console.error('There was an error registering the user', error)
 }
 }
+
+
 
 export const fetchGuest = async(token) => {
   try {
@@ -53,9 +56,9 @@ export const fetchGuest = async(token) => {
     })
     console.log("User response data", response)
     const { data } = await response.json();
-    console.log("User data", data)
-    return data
-  }catch{
+    console.log("User data", data);
+    return data;
+  }catch (error){
     console.log(error)
   }
 }

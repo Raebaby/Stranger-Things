@@ -15,9 +15,9 @@ import "./App.css";
 const App = () => {
   const [posts, setPosts] = useState([]);
   const [token, setToken] = useState(window.localStorage.getItem("token") || "");
-  const [guest, setGuest] = useState(null);
+  const [username, setUsername] = useState("");
 
-  const history = useHistory()
+  const history = useHistory();
 
 
   useEffect(() => {
@@ -33,19 +33,38 @@ const App = () => {
     getPosts();
   }, [])
 
-  useEffect(() => {
-      if (token){
-        const getGuest = async () => {
-          const {username} = await fetchGuest(token);
-          console.log("username", username);
-          setGuest(username);
-        }
-        getGuest();
-      }
-  }, [token])
 
   useEffect(() => {
-    window.localStorage.setItem("token", token)
+      if (token){
+        const getUsername = async () => {
+          const { username } = await fetchGuest(token);
+          console.log("username", username);
+          setUsername(username);
+        };
+        getUsername();
+      }
+  }, [token]);
+
+
+  // useEffect(() => {
+  //   console.log("HERE");
+  //   if (token) {
+  //     const getGuest = async () => {
+  //       const { username } = await fetchGuest(token);
+  //       console.log("username", username);
+  //       setGuest(username);
+  //     };
+  //     getGuest();
+  //   }
+  // }, [token]);
+
+
+  useEffect(() => {
+    if(token){
+      window.localStorage.setItem("token", token);
+    } else{
+      window.localStorage.removeItem("token");
+    } 
   }, [token])
   
 
@@ -53,8 +72,8 @@ const App = () => {
 
   const logOut = () => {
     setToken("");
-    setGuest(null);
-    history.push ("/");
+    setUsername(null);
+    history.push("/");
   }
 
 
@@ -82,7 +101,7 @@ return (
     </nav>
     <Switch>
       <Route className="item" exact path="/">
-        <Home guest = {guest}/>
+        <Home token={token} username={username}/>
       </Route>
       <Route className='item' exact path="/posts">
         <Posts posts={posts}/>
