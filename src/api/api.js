@@ -9,13 +9,15 @@ export const fetchPost = async (token) => {
           'Authorization': `Bearer ${token}`
           }
         })
-        const {data} = await response.json()
+        //console.log("This is data:", response);
+        const {data} = await response.json();
         return data.posts
         
     }catch(error) {
-        console.error(error)
+        console.error('There was an error fetching posts',error)
     }
 }
+
 
 
 export const registerUser = async (username, password) => {
@@ -23,7 +25,7 @@ export const registerUser = async (username, password) => {
     const response = await fetch(`https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/users/register`, {
         method: "POST",
         headers: {
-          "Content-Type": "application/json",
+          "Content-Type": "application/json"
         },
         body: JSON.stringify({
           user: {
@@ -32,12 +34,29 @@ export const registerUser = async (username, password) => {
           },
         }),
       });
-      console.log("Here's a response", response);
+      ///console.log("This is the response:",response);
       const data = await response.json();
-      console.log("Here's our data", data);
+      //console.log('<----DATA---->', data)
       return data;
 } catch(error) {
     console.error('There was an error registering the user', error)
 }
+}
+
+export const fetchGuest = async(token) => {
+  try {
+    const response = await fetch(`${BASEURL}/users/me`, {
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+    })
+    console.log("User response data", response)
+    const { data } = await response.json();
+    console.log("User data", data)
+    return data
+  }catch{
+    console.log(error)
+  }
 }
 

@@ -4,7 +4,8 @@ const LogOut = () => {
     return (
         <div>
             Heading out?
-        </div>
+        
+           </div>
     )
 }
 
