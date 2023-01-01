@@ -1,8 +1,8 @@
 import React, { useEffect, useState }  from "react";
 import ReactDOM from "react-dom/client";
 import { BrowserRouter as Router, Route, Switch, Link, useHistory } from "react-router-dom";
-import { fetchPost, fetchGuest } from "./api/api";
-import { Home, Posts, LogOut, Profile, AccountForm } from "./components"; 
+import { fetchPost, fetchGuest, loginUser } from "./api/api";
+import { Home, Posts, LogOut, Profile, AccountForm, Login } from "./components"; 
 import "./App.css";
 
 
@@ -17,63 +17,56 @@ const App = () => {
   const [token, setToken] = useState(window.localStorage.getItem("token") || "");
   const [username, setUsername] = useState("");
 
-  const history = useHistory();
+
+const history = useHistory();
 
 
-  useEffect(() => {
-    const getPosts = async() =>{
-      try{
-            const result = await fetchPost();
-            setPosts(result)
-            //console.log("Working function!")
-      } catch(error){
-        console.error("There was an error with our routes", error)
-      }
-    }
-    getPosts();
-  }, [])
+
+useEffect(() => {
+  const getPosts = async() =>{
+    try{
+          const result = await fetchPost();
+          setPosts(result)
+          //console.log("Working function!")
+    } catch(error){
+      console.error("There was an error with our routes", error)
+     }
+   }
+   getPosts();
+}, [])
 
 
-  useEffect(() => {
-      if (token){
-        const getUsername = async () => {
-          const { username } = await fetchGuest(token);
-          console.log("username", username);
-          setUsername(username);
-        };
-        getUsername();
-      }
-  }, [token]);
+
+useEffect(() => {
+    if (token){
+       const getUsername = async () => {
+         const { username } = await fetchGuest(token);
+         console.log("username", username);
+         setUsername(username);
+      };
+       getUsername();
+     }
+}, [token]);
 
 
-  // useEffect(() => {
-  //   console.log("HERE");
-  //   if (token) {
-  //     const getGuest = async () => {
-  //       const { username } = await fetchGuest(token);
-  //       console.log("username", username);
-  //       setGuest(username);
-  //     };
-  //     getGuest();
-  //   }
-  // }, [token]);
+
+useEffect(() => {
+  if(token){
+    window.localStorage.setItem("token", token);
+  } else{
+    window.localStorage.removeItem("token");
+  } 
+}, [token])
 
 
-  useEffect(() => {
-    if(token){
-      window.localStorage.setItem("token", token);
-    } else{
-      window.localStorage.removeItem("token");
-    } 
-  }, [token])
-  
 
-
+useEffect(() => {})
 
   const logOut = () => {
     setToken("");
     setUsername(null);
     history.push("/");
+    localStorage.removeItem("token");
   }
 
 

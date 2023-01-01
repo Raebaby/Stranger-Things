@@ -9,7 +9,7 @@ const AccountForm = ({ setToken }) => {
     const [password, setPassword] = useState("");
 
 
-    const {action} = useParams();
+    const { action } = useParams();
     const history = useHistory();
     console.log("action", action);
 
@@ -17,24 +17,28 @@ const AccountForm = ({ setToken }) => {
 
 const onSubmitHandler = async(event) => {
         event.preventDefault();
+        const authFn = action === "register" ? registerUser : loginUser
         try{
-            const { data } = await registerUser(username, password)
+            const { data } = await authFn(username, password)
             setToken(data.token);
             history.push("/")
         } catch(error) {
-            console.error(error);
+            console.log(error);
         }
     }
 
 
-    const title = action === "login" ? "Log In" : "Sign Up"
 
-    return (
-        <form className="ui form" onSubmit={onSubmitHandler}>
-            <h1>{title}</h1> 
-            <div>
-            <div className="feild"> 
-                <label>Username</label>
+
+
+const title = action === "login" ? "Log In" : "Sign Up"
+
+return (
+    <form className="ui form" onSubmit={onSubmitHandler}>
+        <h1>{title}</h1> 
+        <div>
+        <div className="feild"> 
+            <label>Username</label>
                 <input 
                 type="text"
                 value={username} 
@@ -42,9 +46,9 @@ const onSubmitHandler = async(event) => {
                 required
                 onChange={(event) => setUsername(event.target.value)}
                 />
-            </div>  
-            <div className="feild">
-                <label>Password</label>
+        </div>  
+        <div className="feild">
+            <label>Password</label>
                 <input 
                 type="password" 
                 value={password} 
@@ -53,11 +57,9 @@ const onSubmitHandler = async(event) => {
                 required
                 onChange={(event) => setPassword(event.target.value)}
                 />
-            </div></div>
+        </div></div>
             <br></br>
-        <button className="ui button" type="submit">{title}</button>
-                
-            
+        <button className="ui button" type="submit">{title}</button>    
         </form>
     )
 }

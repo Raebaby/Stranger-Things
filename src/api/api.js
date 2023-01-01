@@ -35,13 +35,37 @@ export const registerUser = async (username, password) => {
           },
         }),
       });
-      console.log("This is the response:",response);
+      //console.log("This is the response:",response);
       const data = await response.json();
-      console.log('<----DATA---->', data)
+      //console.log('<----DATA---->', data)
       return data;
 } catch(error) {
     console.error('There was an error registering the user', error)
 }
+}
+
+
+export const loginUser = async (username, password) => {
+  try {
+      const response = await fetch(`https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/users/login`, {
+          method: "POST",
+          headers: {
+              "Content-Type": "application/json"
+          },
+          body: JSON.stringify({
+            user: {
+              username: username, 
+              password: password
+          }
+        })
+      });
+      //console.log("User response data", response)
+      const data = await response.json();
+      //console.log("User data", data);
+      return data;
+  } catch (error) {
+      console.error("An error occured while attempting to login", error);
+  }
 }
 
 
@@ -54,12 +78,37 @@ export const fetchGuest = async(token) => {
         'Authorization': `Bearer ${token}`
       },
     })
-    console.log("User response data", response)
+    //console.log("User response data", response)
     const { data } = await response.json();
-    console.log("User data", data);
+    //console.log("User data", data);
     return data;
-  }catch (error){
-    console.log(error)
+  }catch(error){
+    console.error("There was an error fetcgin the guest", error)
   }
 }
 
+
+export const createPost = async(title, description, price, willDeliver, token) => {
+  try {
+    const response = await fetch('https://strangers-things.herokuapp.com/api/2207-FTB-ET-WEB-PT/posts', {
+      method: "POST",
+      headers: {
+        'Content-Type': 'application/json',
+        'Authorization': `Bearer ${token}`
+      },
+      body: JSON.stringify({
+        post: {
+          title: title,
+          description: description,
+          price: price,
+          willDeliver: willDeliver
+          }
+        })
+      })
+      return  response.json()
+} catch(error) {
+    console.error("There was an error creating this post", error)
+}}
+
+
+//export const createPosts = async(token)
