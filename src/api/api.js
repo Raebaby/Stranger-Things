@@ -68,13 +68,13 @@ export const registerUser = async (username, password) => {
         },
       },
     });
-    if (success) {
+  if (success) {
       return {
         error: null,
         token: data.token,
         message: data.message,
       };
-    } else {
+  } else {
       return {
         error: error.message,
         token: null,
@@ -90,7 +90,7 @@ export const registerUser = async (username, password) => {
       message: null,
     };
   }
-  };
+};
 
 
 export const loginUser = async (username, password) => {
@@ -104,13 +104,13 @@ export const loginUser = async (username, password) => {
         },
       },
     });
-    if (success) {
+  if (success) {
       return {
         error: null,
         token: data.token,
         message: data.message,
       };
-    } else {
+  } else {
       return {
         error: error.message,
         token: null,
@@ -126,7 +126,7 @@ export const loginUser = async (username, password) => {
       message: null,
     };
   }
-  };
+};
 
 
 
@@ -135,12 +135,12 @@ export const fetchGuest = async(token) => {
     const { success, data, error } = await callAPI("/users/me", {
       token: token,
     });
-    if (success) {
+  if (success) {
       return {
         error: null,
         username: data.username,
       };
-    } else {
+  } else {
       return {
         error: error.message,
         username: null,
@@ -152,7 +152,7 @@ export const fetchGuest = async(token) => {
       username: null,
     };
   }
-  };
+};
 
 
 export const createPost = async ( token, title, description, price, willDeliver ) => {
@@ -170,7 +170,7 @@ export const createPost = async ( token, title, description, price, willDeliver 
         post: post,
       },
     });
-    if (success) {
+  if (success) {
       return {
         error: null,
         post: data.post,
@@ -193,7 +193,7 @@ export const createPost = async ( token, title, description, price, willDeliver 
 
 
 
-export const deletePost = async ( token, postId ) => {
+export const deletePosts = async ( token, postId ) => {
   try {
     const { success, error } = await callAPI(`/posts/${postId}`, {
       method: "DELETE",
