@@ -182,10 +182,10 @@ export const createPost = async ( token, title, description, price, willDeliver 
       };
     }
   } catch (error) {
-    console.error("POST /posts failed: ", error);
+    console.error("There was an error creating post", error);
 
     return {
-      error: "Failed to create Post",
+      error: "Could not create the post",
       post: null,
     };
   }
@@ -211,10 +211,68 @@ export const deletePosts = async ( token, postId ) => {
       };
     }
   } catch (error) {
-    console.error("DELETE /posts/postId failed", error);
+    console.error("There was an error deleting post", error);
     return {
-      error: "Failed to delete Post",
+      error: "Can't delete post",
       data: null,
     };
   }
 };
+
+
+
+export const createMessage = async ( message, token, postID ) => {
+  try {
+  const response = await fetch(`${BASEURL}/posts/${postID}/messages`, {
+  method: "POST",
+  headers: {
+    'Content-Type': 'application/json',
+    'Authorization': `Bearer ${token}`
+  },
+  body: JSON.stringify({
+    message: {
+      content: `${message}`
+    }
+  })
+})
+return response.json()
+}catch(error) {
+  console.error(error)
+}}
+
+
+
+// export const createMessage = async (token, postID, message) => {
+//   try {
+//     const { success, error, data } = await callAPI(`/posts/${postID}/messages`, {
+//       token: token,
+//       method: "POST",
+//       body: {
+//         message: {
+//           content: `${message}`
+//         },
+//       },
+//     });
+//     if (success) {
+//       return {
+//         success: success,
+//         error: null,
+//         message: data.message,
+//       };
+//     } else {
+//       return {
+//         success: success,
+//         error: error.message,
+//         comment: null,
+//       };
+//     }
+//   } catch (error) {
+//     console.error('There was an error creating message', error);
+
+//     return {
+//       success: false,
+//       error: "Failed to create message for post",
+//       comment: null,
+//     };
+//   }
+// };

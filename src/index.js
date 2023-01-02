@@ -88,13 +88,13 @@ return (
       <Route className="item" path='/posts/create'>
         <CreatePost token={token}  setPosts={setPosts}/>
       </Route>
-    
+
       <Route className='item' exact path="/posts">
-        <Posts token={token} posts={posts} setPosts={setPosts}/>
+        <Posts token={token} posts={posts} setPosts={setPosts} username={username}/>
       </Route>
 
       <Route className='item' exact path="/posts">
-              <PostItem token={token} posts={posts} setPosts={setPosts}/>
+              <PostItem token={token} posts={posts} setPosts={setPosts} username={username}/>
       </Route>
 
       <Route className="item" exact path="/profile">

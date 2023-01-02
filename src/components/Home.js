@@ -4,7 +4,7 @@ const Home = ({ username }) => {
     return (
       <>
       <h3>Welcome to Stranger Things!</h3>  
-      {username && <h5>{username}, you are logged now in</h5>}
+      {username && <h5>Hello {username}, you are logged now in!</h5>}
       </>
     );
 }

@@ -28,13 +28,13 @@ const onCreateFormSubmitHandler = async(event) => {
             deliver
         );
     if(post) {
-            setPosts((prevPost) => [post, ...prevPost]);
-            post.isAuthor = true;
-            setTitle("");
-            setDescription("");
-            setPrice(0);
-            setDeliver(false);
-            history.push('/posts');  
+        setPosts((prevPost) => [post, ...prevPost]);
+        post.isAuthor = true;
+        setTitle("");
+        setDescription("");
+        setPrice(0);
+        setDeliver(false);
+        history.push('/posts');  
     } else { 
         setErrorMessage(error);
     }  
