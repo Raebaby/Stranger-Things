@@ -7,28 +7,19 @@ import { useParams, useHistory } from "react-router-dom";
 const AccountForm = ({ setToken }) => {
     const [username, setUsername] = useState("");
     const [password, setPassword] = useState("");
-
-
     const { action } = useParams();
     const history = useHistory();
-    console.log("action", action);
 
 
 
 const onSubmitHandler = async(event) => {
         event.preventDefault();
         const authFn = action === "register" ? registerUser : loginUser
-        try{
-            const { data } = await authFn(username, password)
-            setToken(data.token);
-            history.push("/")
-        } catch(error) {
-            console.log(error);
-        }
+        const { token } = await authFn(username, password)
+                setToken(token);
+                history.push("/")
+        if(token){history.push('/')}
     }
-
-
-
 
 
 const title = action === "login" ? "Log In" : "Sign Up"

@@ -1,9 +1,12 @@
 import React from "react";
 import { Link } from "react-router-dom";
+import { deletePost } from "../api/api";
+
+const PostItem = ({ token, setPosts, posts }) => {
 
 
-const PostItem = ({ posts }) => {
-    console.log(posts, "IN ITEMS")
+
+
     return <div className="ui card">
         <div className="content">
             <div className="center aligned header">{posts.location}Location</div>
