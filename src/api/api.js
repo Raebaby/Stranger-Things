@@ -221,58 +221,39 @@ export const deletePosts = async ( token, postId ) => {
 
 
 
-export const createMessage = async ( message, token, postID ) => {
+export const addMessage = async (token, postId, message) => {
   try {
-  const response = await fetch(`${BASEURL}/posts/${postID}/messages`, {
-  method: "POST",
-  headers: {
-    'Content-Type': 'application/json',
-    'Authorization': `Bearer ${token}`
-  },
-  body: JSON.stringify({
-    message: {
-      content: `${message}`
+    const { success, error, data } = await callAPI(`/posts/${postId}/messages`, {
+      token: token,
+      method: "POST",
+      body: {
+        message: {
+          content: `${message}`
+        },
+      },
+    });
+
+    if (success) {
+      return {
+        success: success,
+        error: null,
+        message: data.message,
+      };
+    } else {
+      return {
+        success: success,
+        error: error.message,
+        data: null,
+      };
     }
-  })
-})
-return response.json()
-}catch(error) {
-  console.error(error)
-}}
+  } catch (error) {
+    console.error("Failed to create a message", error);
+    return {
+      success: false,
+      error: "Failed to create message for post",
+      data: null,
+    };
+  }
+};
 
 
-
-// export const createMessage = async (token, postID, message) => {
-//   try {
-//     const { success, error, data } = await callAPI(`/posts/${postID}/messages`, {
-//       token: token,
-//       method: "POST",
-//       body: {
-//         message: {
-//           content: `${message}`
-//         },
-//       },
-//     });
-//     if (success) {
-//       return {
-//         success: success,
-//         error: null,
-//         message: data.message,
-//       };
-//     } else {
-//       return {
-//         success: success,
-//         error: error.message,
-//         comment: null,
-//       };
-//     }
-//   } catch (error) {
-//     console.error('There was an error creating message', error);
-
-//     return {
-//       success: false,
-//       error: "Failed to create message for post",
-//       comment: null,
-//     };
-//   }
-// };
