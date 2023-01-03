@@ -19,16 +19,34 @@ const App = () => {
 
 
 //UseEffect Functions
+// useEffect(() => {
+//   const getPosts = async () =>{
+//     const { error, posts } = await fetchPost(token);
+//     if(error) {
+//       console.error(error)
+//     }
+//     setPosts(posts)
+//    }
+//    getPosts();
+// }, [token])
+
+
+
+const getPosts = async () => {
+  const { error, posts } = await fetchPost(token);
+  if (error) {
+    console.error(error);
+  }
+  setPosts(posts);
+};
+
 useEffect(() => {
-  const getPosts = async () =>{
-    const { error, posts } = await fetchPost(token);
-    if(error) {
-      console.error(error)
-    }
-    setPosts(posts)
-   }
-   getPosts();
-}, [token])
+  getPosts();
+}, [token]);
+
+
+
+
 
 useEffect(() => {
     if (token){
@@ -88,21 +106,14 @@ return (
       <Route className="item" path='/posts/create'>
         <CreatePost token={token}  setPosts={setPosts}/>
       </Route>
-  
-      {/* <Route className="item" path='/posts/create'>
-        <CreatePost token={token}  setPosts={setPosts}/>
-      </Route> */}
-
 
       <Route className='item' exact path="/posts/:postId">
-                    <PostDetail token={token} posts={posts} setPosts={setPosts}/>
+          <PostDetail token={token} posts={posts} setPosts={setPosts} getPosts={getPosts}/>
       </Route>
 
       <Route className='item' exact path="/posts">
         <Posts token={token} posts={posts} setPosts={setPosts} username={username}/>
       </Route>
-
-      
 
       <Route className='item' exact path="/posts">
               <PostItem token={token} posts={posts} setPosts={setPosts} username={username}/>

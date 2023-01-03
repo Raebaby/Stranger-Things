@@ -223,37 +223,38 @@ export const deletePosts = async ( token, postId ) => {
 
 export const addMessage = async (token, postId, message) => {
   try {
-    const { success, error, data } = await callAPI(`/posts/${postId}/messages`, {
-      token: token,
-      method: "POST",
-      body: {
-        message: {
-          content: `${message}`
+    const { success, error, data } = await callAPI(
+      `/posts/${postId}/messages`,
+      {
+        token: token,
+        method: "POST",
+        body: {
+          message: {
+            content: message,
+          },
         },
-      },
-    });
+      }
+    );
 
     if (success) {
       return {
         success: success,
         error: null,
-        message: data.message,
+        messages: data.messages,
       };
     } else {
       return {
         success: success,
         error: error.message,
-        data: null,
+        message: null,
       };
     }
   } catch (error) {
-    console.error("Failed to create a message", error);
+    console.error(`POST/posts/${postId}/messages failed:`, error);
     return {
       success: false,
       error: "Failed to create message for post",
-      data: null,
+      comment: null,
     };
   }
 };
-
-

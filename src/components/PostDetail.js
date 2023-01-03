@@ -1,49 +1,75 @@
+
+
 import React, { useState } from "react";
 import { useParams } from "react-router-dom";
 import PostItem from "./PostItem";
 import { addMessage } from "../api/api";
 
 
-
 const PostDetail = ( props ) => { 
-    const { token, posts, setPosts } = props;
+    const { token, posts, getPosts } = props;
     const { postId } = useParams();
-    const [message, setMessage] = useState('');
+    const [messageText, setMessageText] = useState('');
+    const [errorMessage, seterrorMessage] = useState(null);
 
-    console.log(message)
 
-    const singlePost = posts.find((onePost) => {
-            const foundPost = onePost._id == postId;
-            return foundPost;
-        });
-    if(!singlePost) {
+
+const singlePost = posts.find((onePost) => {
+        const foundPost = onePost._id == postId;
+        return foundPost;
+    });
+
+
+const onSubmitCreateMessage = async (event) => {
+    event.preventDefault();
+    const { success, error, message } = await addMessage(
+        token, 
+        postId, 
+        messageText
+    );
+
+    if(success){
+        setMessageText('')
+      //  console.log(messageText)
+        await getPosts();
+    } else {
+        seterrorMessage(error);
+    }
+}
+
+
+if(!singlePost) {
             return (
                 <p>One moment...</p>
             );
         }
 
-const onClickCreateMessage = (event) => {
-    setMessage(event.target.value)
-}
 
 
 return(
         <>
             <PostItem posts={singlePost}/>
-            <form>
+            <form className="message-form" onSubmit={onSubmitCreateMessage}>
                 <div>
                   <input 
                     type="text" 
                     placeholder="New Message"
-                    value={message}
-                    onChange={onClickCreateMessage}
-                    />
+                    value={messageText}
+                    onChange={(event) => {
+                        setMessageText(event.target.value)
+                    }}/>
                 </div>
-                <button type="submit" className="ui olive button">Send</button>
+                <div>
+                  <span>
+                    <button type="submit" className="ui olive button">Send</button>
+                    { errorMessage ? 
+                    <p style={{ color: "white", backgroundColor: "red" }}>Operation Failed: {errorMessage}</p>
+                    : null}
+                   </span>  
+                </div>
             </form>
         </>   
     );
-      
 };
 
 
