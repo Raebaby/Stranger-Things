@@ -52,14 +52,17 @@ const onClickDelete = async ( postId ) => {
 }
 
 return (
-    <div className="Post_page">
-        <h2>Posts</h2>
+    <div >
+        <h1 className="theupsidedown">You're In The Upside Down!</h1>
+        <img className="postpic" src="https://i.pinimg.com/originals/37/7c/87/377c8732c8b7d6db35272e29a7c02062.jpg"  width="1100" height="500"></img>
+        <h1 className="scroll" >&#8595; Scroll Down for Posts &#8595;</h1>
+        <div className="postcontainer">
         <input type="text" placeholder="Search"
             value={searchTerm}
             onChange={(event) => setSearchTerm(event.target.value)} 
             />
         <i className="search icon"></i>
-            {filteredPosts.map((item) => {
+            {posts.map((item) => {
             return(
                     <PostItem  
                         key={item._id} 
@@ -86,6 +89,7 @@ return (
                 New Post
                 </Link>
             </div>
+        </div>
         </div>
     )
 }

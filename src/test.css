@@ -9,15 +9,19 @@ body {
     background-color: rgb(20, 18, 18);
     color: rgb(238, 233, 233);
     line-height: 1.6;
-    overflow: scroll;
 }
   
 ul {
     list-style: none;
     background-color: #cccccc;
 }
- 
-
+  
+.container {
+    max-width: 768px;
+    margin: auto;
+    padding: 0 20px;
+    justify-content: flex-end;
+}
   
 header {
     height: 70px;
@@ -358,10 +362,7 @@ height: 5px;
     color: yellow;
     animation-duration: 8s;
     animation-name: slidein;
-    animation-iteration-count: 4;
-    left: 40%;
-    top: 5%;
-    position: fixed;
+    animation-iteration-count: 1;
 }
 @keyframes slidein {
     0% {
@@ -378,10 +379,8 @@ height: 5px;
 /*Navigation Bar*/
 
 .sidebar {
-    position: sticky;
+    position: relative;
     width: 25%;
-    position: -webkit-sticky; 
-    position: sticky;
 }
 
 .nav {
@@ -389,8 +388,11 @@ height: 5px;
     height: 100vh;
     text-align: center;
     font-weight: bold;
+    font-family: 'Open Sans', sans-serif;
     font-size: 30px;
 }
+
+
 
 
 .sidebar a:hover {
@@ -416,121 +418,3 @@ li{
     height: 4vh;
 }
 
-
-/*                                                                                      */
-/*                                          POSTS                                       */
-/*                                                                                      */
-
-.scroll{
-    color: yellow;
-    position: absolute;
-    top: 85%;
-    left: 30%;
-    font-size: 8vh;
-    animation-duration: 8s;
-    animation-name: slideDown;
-    animation-iteration-count: 4;
-}
-@keyframes slideDown {
-    0% {
-        transform: translateY(0);
-    }
-    100% {transform: translateY(40px);opacity:1;}
-  }
-
-
-.page{
-    background-color:rgb(20, 18, 18);
-    justify-content: flex-end;
-    display: block;
-
-}
-
-.postcontainer{
-    position: relative;
-    width: 400px;
-    height: 500px;
-    top: 15%;
-    left: 40%;
-}
-
-.postpic {
-    /* background: rgb(20, 18, 18); */
-    background: rgb(168, 32, 32);
-    font-size: larger;
-    padding: 50px;
-    position: absolute;
-    left: 20%;
-    top: 13%;
-  }
-
-  .theupsidedown{
-    color: yellow;
-    animation-duration: 8s;
-    animation-name: slidein;
-    animation-iteration-count: 4;
-    left: 40%;
-    top: 5%;
-    position: absolute;
-}
-@keyframes slidein {
-    0% {
-      margin-left: 0%;
-    }
-    50% {
-      margin-left: 300px;
-    }
-    100% {
-      margin-left: 0%;
-    }
-}
-
-
-.createform{
-    background-color: rgb(198, 33, 33);
-    width: 45vh;
-    height: 70vh;
-    color: yellow;
-    padding: 10px;
-    left: 35%;
-    top: 12%;
-    position: absolute;
-
-}
-
-
-/*                                                                                      */
-/*                                          PROFILE                                     */
-/*                                                                                      */
-
-.profilepic {
-    background: rgb(20, 18, 18);
-    font-size: larger;
-    padding: 60px;
-    position: fixed;
-    left: 35%;
-    top: 13%;
-
-  }
-
-
-/* LOGIN PAGE */
-
-.uiform{
-    color: rgb(227, 51, 20);
-    background-color: rgb(20, 18, 18);
-    width: 400px;
-    height: 500px;
-    top: 15%;
-    position: fixed;
-    left: 40%;
-  }
-
-.logintitle{
-    color: yellow;
-    font-size: 7vh;
-}
-
-/*                                                                                      */
-/*                                          MESSAGES                                    */
-/*                                                                                      */

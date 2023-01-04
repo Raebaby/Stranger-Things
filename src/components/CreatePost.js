@@ -41,7 +41,7 @@ const onCreateFormSubmitHandler = async(event) => {
 };
 
 return(
-
+<div className="createform">
 <div className="createform-container">
     <form  onSubmit={onCreateFormSubmitHandler} className="ui form">
 
@@ -92,6 +92,7 @@ return(
     <button  className="ui button" type="submit">Create Post</button>
      </form>
 </div> 
+</div>
 )
 
 }

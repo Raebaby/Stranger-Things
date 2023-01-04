@@ -25,33 +25,40 @@ const onSubmitHandler = async(event) => {
 const title = action === "login" ? "Log In" : "Sign Up"
 
 return (
-    <form className="ui form" onSubmit={onSubmitHandler}>
-        <h1>{title}</h1> 
-        <div>
-        <div className="feild"> 
-            <label>Username</label>
-                <input 
-                type="text"
-                value={username} 
-                placeholder="username" 
-                required
-                onChange={(event) => setUsername(event.target.value)}
-                />
-        </div>  
-        <div className="feild">
-            <label>Password</label>
-                <input 
-                type="password" 
-                value={password} 
-                placeholder="password" 
-                minLength="8"
-                required
-                onChange={(event) => setPassword(event.target.value)}
-                />
-        </div></div>
+<div>
+    <div>   
+        <form className="uiform" onSubmit={onSubmitHandler}>
+        <h1 className="logintitle">&nbsp; &nbsp; &nbsp; &nbsp;{title}</h1> 
+            <div>
+            <div className="feild"> 
+                <label>Username</label>
+                &nbsp; &nbsp; &nbsp;&nbsp;
+                    <input 
+                    type="text"
+                    value={username} 
+                    placeholder="username" 
+                    required
+                    onChange={(event) => setUsername(event.target.value)}
+                    />
+            </div>  
             <br></br>
-        <button className="ui button" type="submit">{title}</button>    
+            <div className="feild">
+                <label>Password</label>
+                &nbsp; &nbsp; &nbsp; &nbsp;
+                    <input 
+                    type="password" 
+                    value={password} 
+                    placeholder="password" 
+                    minLength="8"
+                    required
+                    onChange={(event) => setPassword(event.target.value)}
+                    />
+            </div></div>
+                <br></br>
+                &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp; &nbsp;<button className="ui button" type="submit">{title}</button>    
         </form>
+    </div>
+</div>        
     )
 }
 

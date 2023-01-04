@@ -48,26 +48,28 @@ if(!singlePost) {
 
 return(
         <>
+        <div className="createmessageform">
             <PostItem posts={singlePost}/>
-            <form className="message-form" onSubmit={onSubmitCreateMessage}>
-                <div>
-                  <input 
-                    type="text" 
-                    placeholder="New Message"
-                    value={messageText}
-                    onChange={(event) => {
-                        setMessageText(event.target.value)
-                    }}/>
-                </div>
-                <div>
-                  <span>
-                    <button type="submit" className="ui olive button">Send</button>
-                    { errorMessage ? 
-                    <p style={{ color: "white", backgroundColor: "red" }}>Operation Failed: {errorMessage}</p>
-                    : null}
-                   </span>  
-                </div>
-            </form>
+                <form className="uiform" onSubmit={onSubmitCreateMessage}>
+                    <div>
+                    <input 
+                        type="text" 
+                        placeholder="New Message"
+                        value={messageText}
+                        onChange={(event) => {
+                            setMessageText(event.target.value)
+                        }}/>
+                    </div>
+                    <div>
+                    <span>
+                        <button type="submit" className="ui olive button">Send</button>
+                        { errorMessage ? 
+                        <p style={{ color: "white", backgroundColor: "red" }}>Operation Failed: {errorMessage}</p>
+                        : null}
+                    </span>  
+                    </div>
+                </form>
+            </div>    
         </>   
     );
 };

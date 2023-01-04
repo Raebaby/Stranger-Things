@@ -72,62 +72,59 @@ const logOut = () => {
     setToken("");
     setUsername(null);
     history.push("/");
-    //localStorage.removeItem("token");
   }
 
 
 //RETURN
 return (
-<div className="container">
-    <nav className="ui secondary menu">
-      <h1>Stranger Things</h1>
-        <Link className="item" to="/">Home</Link>
-        <Link className="item" to="/Posts">Posts</Link>
-        <Link className="item" to="/Profile">Profile</Link>
-        <div className="right menu">
-          {
-            token ? (
-            <button onClick={logOut} className="item">Log Out</button>
-            ): (
-                <>
-            <Link className="item" to="/Account/login">Log In</Link>
-            <Link className="item" to="/Account/register">Sign Up</Link>
-                </>
-            )}
-        </div> 
-    </nav>
-    <nav className="sidebar">
-    </nav>
-    <Switch>
-      <Route className="item" exact path="/">
-        <Home token={token} username={username}/>
-      </Route>
+<div  className="page" >
+        <nav className="sidebar">
+          <ul className="nav">
+          <li><Link className="item" to="/">Home</Link></li> 
+          <li><Link className="item" to="/Posts">Posts</Link></li>
+            <li><Link className="item" to="/Profile">Profile</Link></li>
+              {
+                token ? (
+                <li><button onClick={logOut} >Log Out</button></li>
+                ): (
+                    <>
+                <li><Link className="item" to="/Account/login">Log In</Link></li>
+                <li><Link className="item" to="/Account/register">Sign Up</Link></li>
+                    </>
+                )}
+          </ul>      
+        </nav>
 
-      <Route className="item" path='/posts/create'>
-        <CreatePost token={token}  setPosts={setPosts}/>
-      </Route>
+  <Switch>
+    <Route className="item" exact path="/">
+      <Home token={token} username={username}/>
+    </Route>
 
-      <Route className='item' exact path="/posts/:postId">
-          <PostDetail token={token} posts={posts} setPosts={setPosts} getPosts={getPosts}/>
-      </Route>
+    <Route className="item" path='/posts/create'>
+      <CreatePost token={token}  setPosts={setPosts}/>
+    </Route>
 
-      <Route className='item' exact path="/posts">
-        <Posts token={token} posts={posts} setPosts={setPosts} username={username}/>
-      </Route>
+    <Route className='item' exact path="/posts/:postId">
+        <PostDetail token={token} posts={posts} setPosts={setPosts} getPosts={getPosts}/>
+    </Route>
 
-      <Route className='item' exact path="/posts">
-              <PostItem token={token} posts={posts} setPosts={setPosts} username={username}/>
-      </Route>
+    <Route className='item' exact path="/posts">
+      <Posts token={token} posts={posts} setPosts={setPosts} username={username}/>
+    </Route>
 
-      <Route className="item" exact path="/profile">
-        <Profile />
-      </Route>
+    <Route className='item' exact path="/posts">
+            <PostItem token={token} posts={posts} setPosts={setPosts} username={username}/>
+    </Route>
 
-      <Route className="item" exact path="/account/:action">
-        <AccountForm setToken={setToken}/>
-      </Route>
+    <Route className="item" exact path="/profile">
+      <Profile token={token} username={username}/>
+    </Route>
 
-    </Switch>
+    <Route className="item" exact path="/account/:action">
+      <AccountForm setToken={setToken}/>
+    </Route>
+  </Switch>
+
 </div>
 );
 };
