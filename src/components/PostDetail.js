@@ -51,7 +51,7 @@ return(
         <div className="createmessageform">
             <PostItem posts={singlePost}/>
                 <form className="uiform" onSubmit={onSubmitCreateMessage}>
-                    <div>
+                    <div >
                     <input 
                         type="text" 
                         placeholder="New Message"
